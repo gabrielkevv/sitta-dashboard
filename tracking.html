@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tracking Pengiriman - SITTA UT</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ========================= NAVBAR ========================= -->
+  <header class="navbar">
+    <div class="navbar-brand">
+      <div class="logo-mini">UT</div>
+      <span>SITTA</span>
+    </div>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">🏠 Dashboard</a></li>
+        <li><a href="stok.html">📚 Informasi Bahan Ajar</a></li>
+        <li class="active"><a href="tracking.html">🚚 Tracking Pengiriman</a></li>
+        <li><a href="dashboard.html">📊 Laporan</a></li>
+        <li><a href="dashboard.html">📜 Histori Transaksi</a></li>
+      </ul>
+    </nav>
+    <div class="user-info">
+      <div class="avatar" id="avatarUser">U</div>
+      <button class="btn-logout" id="btnLogout" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="page-header">
+      <h2>🚚 Tracking Pengiriman Bahan Ajar</h2>
+      <p>Lacak status pengiriman Delivery Order Anda</p>
+    </div>
+
+    <!-- Form Pencarian -->
+    <div class="search-card">
+      <form id="formCariDO" class="search-form" novalidate>
+        <div class="form-group">
+          <label for="nomorDO">Nomor Delivery Order</label>
+          <div class="input-wrapper">
+            <span class="icon">🔍</span>
+            <input type="text" id="nomorDO" placeholder="Contoh: 2023001234" required />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cari</button>
+      </form>
+      <p style="margin-top:12px;font-size:12px;color:var(--ut-text-soft);">
+        💡 Coba nomor DO: <strong>2023001234</strong> atau <strong>2023005678</strong>
+      </p>
+    </div>
+
+    <!-- Hasil Tracking -->
+    <div class="tracking-result" id="hasilTracking">
+      <div class="empty-state">
+        <div class="emoji">📭</div>
+        <p>Masukkan Nomor Delivery Order untuk melacak pengiriman.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    &copy; 2025 Universitas Terbuka - SITTA | Sistem Informasi Tiras &amp; Transaksi Bahan Ajar
+  </footer>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    var u = sessionStorage.getItem("sittaUser");
+    if (u) {
+      var nama = JSON.parse(u).nama || "U";
+      document.getElementById("avatarUser").textContent = nama.charAt(0).toUpperCase();
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informasi Bahan Ajar - SITTA UT</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ========================= NAVBAR ========================= -->
+  <header class="navbar">
+    <div class="navbar-brand">
+      <div class="logo-mini">UT</div>
+      <span>SITTA</span>
+    </div>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">🏠 Dashboard</a></li>
+        <li class="active"><a href="stok.html">📚 Informasi Bahan Ajar</a></li>
+        <li><a href="tracking.html">🚚 Tracking Pengiriman</a></li>
+        <li><a href="dashboard.html">📊 Laporan</a></li>
+        <li><a href="dashboard.html">📜 Histori Transaksi</a></li>
+      </ul>
+    </nav>
+    <div class="user-info">
+      <div class="avatar" id="avatarUser">U</div>
+      <button class="btn-logout" id="btnLogout" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="page-header">
+      <h2>📚 Informasi Stok Bahan Ajar</h2>
+      <p>Daftar bahan ajar (BMP) Universitas Terbuka beserta stoknya</p>
+    </div>
+
+    <div class="section-actions">
+      <div class="form-group" style="margin:0;flex:1;max-width:340px;">
+        <div class="input-wrapper">
+          <span class="icon">🔍</span>
+          <input type="text" id="inputCariStok" placeholder="Cari nama / kode / lokasi..." />
+        </div>
+      </div>
+      <button class="btn btn-primary" id="btnTambahStok" type="button">➕ Tambah Stok</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="data-table" aria-label="Tabel stok bahan ajar">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Cover</th>
+            <th>Kode Barang</th>
+            <th>Nama Bahan Ajar</th>
+            <th>Lokasi</th>
+            <th>Jenis</th>
+            <th>Edisi</th>
+            <th>Stok / Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyStok"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="footer">
+    &copy; 2025 Universitas Terbuka - SITTA | Sistem Informasi Tiras &amp; Transaksi Bahan Ajar
+  </footer>
+</div>
+
+<!-- ========================= TAMBAH STOK ========================= -->
+<div class="modal-overlay" id="modalTambahStok" role="dialog" aria-modal="true" aria-labelledby="judulTambah">
+  <div class="modal" style="max-width:500px;">
+    <div class="modal-header">
+      <h3 id="judulTambah">➕ Tambah Bahan Ajar Baru</h3>
+      <button class="modal-close" type="button" onclick="tutupModal('modalTambahStok')" aria-label="Tutup">&times;</button>
+    </div>
+    <form id="formTambahStok">
+      <div class="form-group">
+        <label for="inKodeLokasi">Kode Lokasi</label>
+        <div class="input-wrapper">
+          <span class="icon">📍</span>
+          <input type="text" id="inKodeLokasi" placeholder="Contoh: 0JKT01" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inKodeBarang">Kode Barang</label>
+        <div class="input-wrapper">
+          <span class="icon">🏷️</span>
+          <input type="text" id="inKodeBarang" placeholder="Contoh: EKMA4216" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inNamaBarang">Nama Bahan Ajar</label>
+        <div class="input-wrapper">
+          <span class="icon">📖</span>
+          <input type="text" id="inNamaBarang" placeholder="Nama mata kuliah" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inJenisBarang">Jenis Barang</label>
+        <div class="input-wrapper">
+          <span class="icon">📦</span>
+          <select id="inJenisBarang" style="width:100%;padding:12px 12px 12px 40px;border:1px solid var(--ut-border);border-radius:10px;background:#fafbfc;font-size:14px;">
+            <option value="BMP">BMP (Buku Materi Pokok)</option>
+            <option value="Modul">Modul</option>
+            <option value="CD">CD/Multimedia</option>
+            <option value="Suplemen">Suplemen</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label for="inEdisi">Edisi</label>
+          <div class="input-wrapper">
+            <span class="icon">#</span>
+            <input type="text" id="inEdisi" placeholder="1" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inStok">Jumlah Stok</label>
+          <div class="input-wrapper">
+            <span class="icon">📊</span>
+            <input type="number" id="inStok" placeholder="100" min="0" required />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="tutupModal('modalTambahStok')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ========================= MODAL DETAIL STOK ========================= -->
+<div class="modal-overlay" id="modalDetailStok" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>📖 Detail Bahan Ajar</h3>
+      <button class="modal-close" type="button" onclick="tutupModal('modalDetailStok')" aria-label="Tutup">&times;</button>
+    </div>
+    <div id="isiDetailStok"></div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" onclick="tutupModal('modalDetailStok')">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    var u = sessionStorage.getItem("sittaUser");
+    if (u) {
+      var nama = JSON.parse(u).nama || "U";
+      document.getElementById("avatarUser").textContent = nama.charAt(0).toUpperCase();
+    }
+  });
+</script>
+</body>
+</html>

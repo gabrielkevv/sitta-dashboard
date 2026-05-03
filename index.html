@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - SITTA Universitas Terbuka</title>
+  <meta name="description" content="Sistem Informasi Tiras dan Transaksi Bahan Ajar Universitas Terbuka" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="login-page">
+
+  <main class="login-card" role="main" aria-labelledby="judulLogin">
+    <div class="login-logo">
+      <div class="logo-circle" aria-hidden="true">UT</div>
+    </div>
+    <h1 id="judulLogin">Selamat Datang</h1>
+    <p class="subtitle">SITTA - Sistem Informasi Tiras &amp; Transaksi Bahan Ajar</p>
+
+    <form id="formLogin" novalidate>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+          <span class="icon" aria-hidden="true">✉️</span>
+          <input type="email" id="email" name="email" placeholder="contoh: rina@ut.ac.id" autocomplete="email" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="icon" aria-hidden="true">🔑</span>
+          <input type="password" id="password" name="password" placeholder="Masukkan password" autocomplete="current-password" required />
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+
+      <div class="login-links">
+        <a id="btnLupa">Lupa Password?</a>
+        <a id="btnDaftar">Belum punya akun? Daftar</a>
+      </div>
+    </form>
+
+    <div style="margin-top:22px;padding:12px;background:#f0f7ff;border-left:3px solid var(--ut-blue);border-radius:6px;font-size:12px;color:var(--ut-text-soft);">
+      <strong>💡 Akun Demo:</strong><br />
+      Email: <code>rina@ut.ac.id</code> | Password: <code>rina123</code><br />
+      Email: <code>admin@ut.ac.id</code> | Password: <code>admin123</code>
+    </div>
+  </main>
+
+  <!-- ========================= LUPA PASSWORD ========================= -->
+  <div class="modal-overlay" id="modalLupa" role="dialog" aria-modal="true" aria-labelledby="judulLupa">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="judulLupa">🔓 Lupa Password</h3>
+        <button class="modal-close" type="button" onclick="tutupModal('modalLupa')" aria-label="Tutup">&times;</button>
+      </div>
+      <p style="font-size:13px;color:var(--ut-text-soft);margin-bottom:14px;">
+        Masukkan email Anda. Tautan reset password akan dikirimkan ke email tersebut.
+      </p>
+      <form id="formLupa">
+        <div class="form-group">
+          <label for="emailLupa">Email Terdaftar</label>
+          <div class="input-wrapper">
+            <span class="icon">✉️</span>
+            <input type="email" id="emailLupa" placeholder="email@ut.ac.id" required />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="tutupModal('modalLupa')">Batal</button>
+          <button type="submit" class="btn btn-primary">Kirim Tautan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================= DAFTAR ========================= -->
+  <div class="modal-overlay" id="modalDaftar" role="dialog" aria-modal="true" aria-labelledby="judulDaftar">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="judulDaftar">📝 Daftar Akun Baru</h3>
+        <button class="modal-close" type="button" onclick="tutupModal('modalDaftar')" aria-label="Tutup">&times;</button>
+      </div>
+      <form id="formDaftar">
+        <div class="form-group">
+          <label for="namaDaftar">Nama Lengkap</label>
+          <div class="input-wrapper">
+            <span class="icon">👤</span>
+            <input type="text" id="namaDaftar" placeholder="Nama lengkap" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="emailDaftar">Email</label>
+          <div class="input-wrapper">
+            <span class="icon">✉️</span>
+            <input type="email" id="emailDaftar" placeholder="email@ut.ac.id" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="passDaftar">Password</label>
+          <div class="input-wrapper">
+            <span class="icon">🔑</span>
+            <input type="password" id="passDaftar" placeholder="Minimal 6 karakter" minlength="6" required />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="tutupModal('modalDaftar')">Batal</button>
+          <button type="submit" class="btn btn-primary">Daftar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

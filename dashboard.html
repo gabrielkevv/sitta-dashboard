@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - SITTA Universitas Terbuka</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ========================= NAVBAR ========================= -->
+  <header class="navbar" role="banner">
+    <div class="navbar-brand">
+      <div class="logo-mini">UT</div>
+      <span>SITTA</span>
+    </div>
+
+    <nav aria-label="Menu utama">
+      <ul class="nav-menu">
+        <li class="active"><a href="#" data-tab="tabDashboard">🏠 Dashboard</a></li>
+        <li><a href="stok.html">📚 Informasi Bahan Ajar</a></li>
+        <li><a href="tracking.html">🚚 Tracking Pengiriman</a></li>
+        <li>
+          <span class="nav-link">📊 Laporan ▾</span>
+          <ul class="dropdown-menu">
+            <li><a href="#" data-tab="tabMonitoring">Monitoring Progress DO</a></li>
+            <li><a href="#" data-tab="tabRekap">Rekap Bahan Ajar</a></li>
+          </ul>
+        </li>
+        <li><a href="#" data-tab="tabHistori">📜 Histori Transaksi</a></li>
+      </ul>
+    </nav>
+
+    <div class="user-info">
+      <div class="avatar" id="avatarUser">U</div>
+      <button class="btn-logout" id="btnLogout" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <!-- ========================= MAIN ========================= -->
+  <main class="content" role="main">
+
+    <!-- ===== TAB: DASHBOARD ===== -->
+    <section id="tabDashboard" class="tab-section active">
+      <div class="greeting-card">
+        <h3 id="greetingTeks">Selamat Datang</h3>
+        <p id="greetingLokasi">Memuat...</p>
+      </div>
+
+      <div class="page-header">
+        <h2>Dashboard Aplikasi SITTA</h2>
+        <p>Ringkasan informasi tiras &amp; transaksi bahan ajar Universitas Terbuka</p>
+      </div>
+
+      <!-- Statistik singkat -->
+      <div class="menu-grid" style="margin-bottom:28px;">
+        <div class="menu-card">
+          <div class="icon-box">📦</div>
+          <h4 id="totalStok">0</h4>
+          <p>Total Stok Bahan Ajar</p>
+        </div>
+        <div class="menu-card warna-2">
+          <div class="icon-box">🚚</div>
+          <h4 id="totalDO">0</h4>
+          <p>Delivery Order Aktif</p>
+        </div>
+        <div class="menu-card warna-3">
+          <div class="icon-box">📚</div>
+          <h4 id="totalBahan">0</h4>
+          <p>Jenis Bahan Ajar</p>
+        </div>
+        <div class="menu-card warna-4">
+          <div class="icon-box">🏢</div>
+          <h4>40+</h4>
+          <p>UPBJJ Terhubung</p>
+        </div>
+      </div>
+
+      <!-- Pintasan Menu Utama -->
+      <h3 style="color:var(--ut-blue-dark);margin-bottom:14px;">🚀 Pintasan Menu</h3>
+      <div class="menu-grid">
+        <a href="stok.html" class="menu-card">
+          <div class="icon-box">📚</div>
+          <h4>Informasi Bahan Ajar</h4>
+          <p>Lihat &amp; kelola stok bahan ajar</p>
+        </a>
+        <a href="tracking.html" class="menu-card warna-2">
+          <div class="icon-box">🚚</div>
+          <h4>Tracking Pengiriman</h4>
+          <p>Lacak status pengiriman DO</p>
+        </a>
+        <a href="#" class="menu-card warna-3" data-tab="tabMonitoring">
+          <div class="icon-box">📊</div>
+          <h4>Monitoring DO</h4>
+          <p>Pantau progress delivery order</p>
+        </a>
+        <a href="#" class="menu-card warna-4" data-tab="tabHistori">
+          <div class="icon-box">📜</div>
+          <h4>Histori Transaksi</h4>
+          <p>Riwayat transaksi bahan ajar</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== TAB: MONITORING DO ===== -->
+    <section id="tabMonitoring" class="tab-section">
+      <div class="page-header">
+        <h2>📊 Monitoring Progress Delivery Order</h2>
+        <p>Progress pengiriman DO bahan ajar ke seluruh UPBJJ</p>
+      </div>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nomor DO</th>
+              <th>UPBJJ Tujuan</th>
+              <th style="min-width:160px;">Progress</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyMonitoring"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== TAB: REKAP BAHAN AJAR ===== -->
+    <section id="tabRekap" class="tab-section">
+      <div class="page-header">
+        <h2>📋 Rekap Bahan Ajar</h2>
+        <p>Rekapitulasi stok bahan ajar &amp; status ketersediaan</p>
+      </div>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Kode</th>
+              <th>Nama Bahan Ajar</th>
+              <th>Lokasi</th>
+              <th>Stok</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyRekap"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== TAB: HISTORI TRANSAKSI ===== -->
+    <section id="tabHistori" class="tab-section">
+      <div class="page-header">
+        <h2>📜 Histori Transaksi Bahan Ajar</h2>
+        <p>Riwayat seluruh transaksi pengiriman bahan ajar</p>
+      </div>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tanggal</th>
+              <th>Nomor DO</th>
+              <th>UPBJJ</th>
+              <th>Kode Barang</th>
+              <th>Jumlah</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyHistori"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    &copy; 2025 Universitas Terbuka - SITTA | Sistem Informasi Tiras &amp; Transaksi Bahan Ajar
+  </footer>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+<script>
+  // Set inisial avatar setelah load
+  window.addEventListener("DOMContentLoaded", function () {
+    var u = sessionStorage.getItem("sittaUser");
+    if (u) {
+      var nama = JSON.parse(u).nama || "U";
+      document.getElementById("avatarUser").textContent = nama.charAt(0).toUpperCase();
+    }
+  });
+</script>
+</body>
+</html>
