@@ -19,7 +19,7 @@ sitta-praktik/
     └── img/            → gambar cover bahan ajar
 ```
 
-## 🚀 Cara Pakai
+## Cara Pakai
 
 1. Ekstrak folder `sitta-praktik/`.
 2. Buka file **`index.html`** di browser (Chrome, Firefox, atau Edge).
